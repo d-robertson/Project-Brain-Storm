@@ -19,6 +19,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameCanvas', { preload: prelo
     game.add.sprite(0, 0, 'space');
     enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
     enterKey.onDown.add(enterPress, this);
+    backSpace = game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE);
+    backSpace.onDown.add(bsPress, this);
 
 
     words = game.add.group();
@@ -77,5 +79,9 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameCanvas', { preload: prelo
     inputText.text = '';
 
       console.log("enter");
+  }
+
+  function bsPress(){
+    inputText.text = inputText.text.slice(0, -1);
   }
  
