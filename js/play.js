@@ -1,38 +1,90 @@
 var playState = {
   create: function(){
+    
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.add.sprite(0, 0, 'space');
+    enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+    enterKey.onDown.add(enterPress, this);
+    backSpace = game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE);
+    backSpace.onDown.add(bsPress, this);
 
-    this.keyboard = game.input.keyboard;
+    scoreText = game.add.text(50, 0, score, {font: "32px Arial", fill: "#ffffff", align: "center"});
 
-    this.player = game.add.text(80, 80, 'Player1!', {font: '50px Arial', fill: '#00FF00' });
-    game.physics.arcade.enable(this.player);
 
-    this.win = game.add.text(160, 160, 'win!', {font: '50px Arial', fill: '#00FF00' });
-    game.physics.arcade.enable(this.win);
+    words = game.add.group();
+
+    for(i=0;i<game.global.words.length;i++){
+      var temp = game.add.text(0, 0, game.global.words[i], {font: "32px Arial", fill: "#ffffff", align: "center"}, words);
+      temp.exists = false;
+      game.physics.arcade.enable(temp);
+      temp.outOfBoundsKill = true;
+      temp.checkWorldBounds = true;
+    }
+
+    inputText = game.add.text(game.world.centerX, game.world.centerY, '', {font: "32px Arial", fill: "#00ff00", align: "center"});
+    
+
+    game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this); 
+
+    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+
+
+    function updateCounter() {
+
+      if(words.children.length > 0){
+        var randomNum = game.rnd.integerInRange(0, words.children.length -1);
+
+        var randWord = words.getChildAt(randomNum);
+
+        randWord.reset(game.rnd.integerInRange(100, game.world.width - 100), 0); 
+
+        randWord.body.velocity.setTo(0, 100);
+
+        counter++;
+      } else {
+
+        win();
+      }
+
+      
+    }
+
+    function win(){
+      game.state.start('win');
+    }
+
+    function keyPress(char){
+      inputText.text += char;
+      
+    }
+
+    function enterPress(){
+      words.forEachExists(function(word){
+        if(word.text === inputText.text){
+          word.destroy();
+
+          score + 5;
+        }
+
+      });
+
+      inputText.text = '';
+
+        console.log("enter");
+    }
+
+    function bsPress(){
+      inputText.text = inputText.text.slice(0, -1);
+    }
+
+    
 
   },
 
   update: function(){
-    game.physics.arcade.overlap(this.player, this.win, this.Win, null, this);
-
-    if(this.keyboard.isDown(Phaser.Keyboard.A)) {
-      this.player.body.velocity.x = -175;
-    } else if (this.keyboard.isDown(Phaser.Keyboard.D)) {
-      this.player.body.velocity.x = 175;
-    } else {
-      this.player.body.velocity.x = 0;
-    }
-
-    if(this.keyboard.isDown(Phaser.Keyboard.W)) {
-      this.player.body.velocity.y = -175;
-    } else if (this.keyboard.isDown(Phaser.Keyboard.S)) {
-      this.player.body.velocity.y = 175;
-    } else {
-      this.player.body.velocity.y = 0;
-    }
-  },
-
-  Win: function(){
-    game.state.start('win');
+    
   }
+
+  
 };
 
