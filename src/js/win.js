@@ -4,9 +4,9 @@ var winState = {
 
     var winLabel = game.add.text(80, 80, 'You Won!', {font: '50px Arial', fill: '#00FF00' });
 
-    var wkey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    var spacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    wkey.onDown.addOnce(this.restart, this);
+    spacebar.onDown.addOnce(this.restart, this);
   },
 
   restart: function(){
