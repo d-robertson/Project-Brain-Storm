@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1200, 800, Phaser.AUTO, 'gameCanvas');
+var game = new Phaser.Game(600, 1000, Phaser.AUTO, 'gameCanvas');
 
 game.global = {words: []};
 
@@ -10,6 +10,9 @@ var inputText = '';
 var enterKey;
 var words;
 var score = 0;
+var booms;
+var bgScroll;
+var menuScroll;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
