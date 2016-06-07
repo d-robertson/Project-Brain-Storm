@@ -2,7 +2,7 @@ var playState = {
   create: function(){
     
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    bgScroll = game.add.tileSprite(0, 0, 600, 1000, 'scrollBackground');
+    bgScroll = game.add.tileSprite(0, 0, 600, 950, 'scrollBackground');
     enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
     enterKey.onDown.add(enterPress, this);
     backSpace = game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE);
@@ -52,12 +52,16 @@ var playState = {
 
         counter++;
 
-        timerText.text = counter;
+        timeCounter--;
 
-      } else {
+        timerText.text = timeCounter;
 
+      } 
+
+      if(timeCounter === 0){
         win();
-      }
+      }  
+      
   
     }
 
@@ -86,7 +90,16 @@ var playState = {
           boom.setScaleMinMax(5);
           boom.play('boom', 30, false, true);
 
+          enterCount++;
+
           var newScore = score += 5;
+
+          bonusTime++;
+
+          if(bonusTime === 3){
+            timeCounter += 3;
+            bonusTime = 0;
+          }
 
           scoreText.text = newScore;
 
@@ -96,8 +109,6 @@ var playState = {
       });
 
       inputText.text = '';
-
-        console.log("enter");
     }
 
     function bsPress(){
@@ -107,7 +118,7 @@ var playState = {
 
       scoreText.text = newScore;
 
-      console.log(scoreText.text);
+      bsCount++;
     }
 
     function spacePress(){

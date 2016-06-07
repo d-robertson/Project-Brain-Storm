@@ -12,13 +12,11 @@ var loadState = {
     game.load.spritesheet('boom', 'assets/explosion.png', 30, 30);
 
     $.ajax({
-      url: 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&excludePartOfSpeech=proper-noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=50&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
+      url: 'http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&excludePartOfSpeech=proper-noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=3&maxLength=6&limit=100&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
       key: '7297d5fa96bc0bb79650f0128c508392115d047b7c7e7095a',
       method: 'GET',
       success: function(data) {
-        // Do things!!
-        console.log(data);
-
+  
         for(i=0;i<data.length;i++){
 
           var word = data[i].word;
