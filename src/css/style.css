@@ -1,2 +1,8 @@
+body {
 
+  background-image: url("../assets/backgroundPSG.jpg");
+}
 
+#gameCanvas {
+  margin-left: 20%;
+}
