@@ -22,6 +22,10 @@ var playState = {
     }
 
     inputText = game.add.text(game.world.centerX, game.world.centerY, '', {font: "32px Arial", fill: "#00ff00", align: "center"});
+
+    this.boom = this.game.add.group();
+    // seans github for animation sprite help
+    //https://github.com/srobertson421/space-shooter/blob/master/enemy.js#L3
     
 
     game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this); 
@@ -63,8 +67,14 @@ var playState = {
         if(word.text === inputText.text){
           word.destroy();
 
-          score + 5;
-        }
+          var newScore = score += 5;
+
+          scoreText.text = newScore;
+
+          console.log(scoreText.text);
+        } 
+
+        
 
       });
 
@@ -75,6 +85,12 @@ var playState = {
 
     function bsPress(){
       inputText.text = inputText.text.slice(0, -1);
+
+      var newScore = score -= 1;
+
+      scoreText.text = newScore;
+
+      console.log(scoreText.text);
     }
 
     
