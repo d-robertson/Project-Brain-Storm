@@ -31,3 +31,5 @@ more animation, a small ship shooting lazers at each individual letter
 get my api to grab the exact words i want
 
 add a level progression like tetris
+
+build in a arcade style score board using firebase
