@@ -15,6 +15,12 @@ var bgScroll;
 var menuScroll;
 var enterCount = 0;
 var bsCount = 0;
+var explosionSound;
+var music;
+
+var pause_label;
+var pauseMenu;
+var choiseLabel;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
@@ -23,3 +29,9 @@ game.state.add('play', playState);
 game.state.add('win', winState);
 
 game.state.start('boot');
+
+
+
+
+
+
