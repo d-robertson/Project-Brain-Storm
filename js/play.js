@@ -20,6 +20,11 @@ var playState = {
     booms.createMultiple(50, 'boom');
     booms.forEach(boomSet, this);
 
+    music = game.add.audio('tunes', 0.5, true);
+    music.play();
+
+    explosionSound = this.game.add.audio('explosion', 0.3, false);
+
     for(i=0;i<game.global.words.length;i++){
       var temp = game.add.text(0, 0, game.global.words[i], {font: "32px Arial", fill: "#ffffff", align: "center"}, words);
       temp.exists = false;
@@ -89,6 +94,7 @@ var playState = {
           boom.reset(word.x, word.y);
           boom.setScaleMinMax(5);
           boom.play('boom', 30, false, true);
+          explosionSound.play();
 
           enterCount++;
 
@@ -125,6 +131,31 @@ var playState = {
       inputText.text = inputText.text.concat(' ');
     }
 
+
+    pause_label = game.add.text(game.world.width - 200, 0, 'Pause', { font: '24px Arial', fill: '#fff' });
+    pause_label.inputEnabled = true;
+
+    
+    pause_label.events.onInputUp.add(function () {
+
+      console.log('Hitting input');
+
+      if(game.paused === false){
+        
+          game.paused = true;
+            
+          choiseLabel = game.add.text(300, 600, 'Click to continue', { font: '30px Arial', fill: '#fff' });
+          choiseLabel.anchor.setTo(0.5, 0.5);
+      }
+    });
+
+    game.input.onDown.add(function() {
+      if(game.paused) {
+        game.paused = false;
+        choiseLabel.destroy();
+      }
+    }, this);
+      
   },
 
   update: function(){
