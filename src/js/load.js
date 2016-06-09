@@ -19,6 +19,7 @@ var loadState = {
 // these are just perameters for the api
 // i wanted to exclude more but i couldn't get it
         hasDictionaryDef : 'true',
+        // to exclude more parts of speech possibly make the value for that key an array of all the exclusions??????????
         excludePartOfSpeech : 'proper-noun',
         minCorpusCount : '0',
         maxCorpusCount : '-1',
