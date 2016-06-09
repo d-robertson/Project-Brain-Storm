@@ -5,6 +5,7 @@ body {
 
 #gameCanvas {
   margin-left: 22%;
+  margin-top: 2%;
 }
 /*my class for the css loading spinner*/
 .loader {
