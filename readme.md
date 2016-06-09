@@ -19,6 +19,9 @@ phaser.js v2.4.8
 bootstrap v3.3.6
 jquery v2.2.2
 
+#code help
+I snagged code from a few different phaser tutorials. 
+
 
 #I wanted to build a nerdy speed typing game with kind of a spaceship feel to it. I implement the phaser library to build a html canvas element and draw out my game.I used an api to grab my words and put them on the screen to kill.
 
