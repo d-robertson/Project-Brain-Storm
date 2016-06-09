@@ -1,5 +1,5 @@
 var winState = {
-
+  //create my winning stats page
   create: function(){
 
     var winLabel = game.add.text(80, 80, 'You Won!', {font: '50px Arial', fill: '#00FF00' });
@@ -12,7 +12,7 @@ var winState = {
 
     spacebar.onDown.addOnce(this.restart, this);
   },
-
+  //on spacebar run this function restart and set everything back to the start
   restart: function(){
     counter = 0;
     timeCounter = 60;
